@@ -6,11 +6,7 @@ class ArchGen:
 
     @staticmethod
     def awaitConf():
-<<<<<<< HEAD
         if input("Continue? (y/n): ") != 'y':
-=======
-        if input("Continue? (y/n): ") != 'y'
->>>>>>> main
             exit
 
     def __init__(self):
@@ -21,9 +17,5 @@ class ArchGen:
         print('Arch Linux is a great way to learn the inner workings of a\nLinux distro. Therefore, it is highly recommended that users\nattempt to install Arch Linux manually at least once using\nthe excellent wiki.\n')
         print('All to say, this script is not a replacement for that learning\nexperience. The target audience are those who understand the\ninstallation process, but don\'t have the energy to redo it.\n')
         self.awaitConf()
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> main
 installer = ArchGen()
