@@ -22,7 +22,7 @@ class ArchGen:
         self.clear()
         print('-----------------------Network Connection-----------------------\n')
         print('a network connection is required to proceed. If you have already\nconnected via ethernet, you may skip. Otherwise, setup wifi now.')
-       if input('Use WiFi? (y/n): ') == 'y':
+        if input('Use WiFi? (y/n): ') == 'y':
            os.system('iwctl device list')
            adapter = input('Enter Desired Device Name (ex. wlan0): '')
 
