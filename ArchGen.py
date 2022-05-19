@@ -22,13 +22,45 @@ class ArchGen:
     def setNetwork(self):
         self.clear()
         print('-----------------------Network Connection-----------------------\n')
-        print('a network connection is required to proceed. If you have already\nconnected via ethernet, you may skip. Otherwise, setup wifi now.')
+        print('A network connection is required to proceed. If you have already\nconnected via ethernet, you may skip. Otherwise, setup wifi now.\n')
         if input('Use WiFi? (y/n): ') == 'y':
             os.system('iwctl device list')
-            adapter = input('Enter Desired Device Name (ex. wlan0): ')
+            adapter = input('Enter desired device name (ex. wlan0): ')
 
             confAdapter = 'Use Device "' + adapter + '? (y/n): '
-            if input(confAdapter) == 'n':
+            while input(confAdapter) == 'n':
                 adapter = input('Enter Desired Device Name (ex. wlan0): ')
+                confAdapter = 'Use device "' + adapter + '? (y/n): '
+
+            scanCmd = 'iwctl station ' + adapter + ' scan'
+            os.system(scanCmd)
+            listCmd = 'iwctl station ' + adapter + ' get-networks'
+            os.system(listCmd)
+
+            ssid = input('Enter SSID of desired network: ')
+            confSSID = 'Connect to ' + ssid + ' ? (y/n)'
+            while input(sonfSSID) != 'y'
+                ssid = input('Enter SSID of desired network: ')
+                confSSID = 'Connect to ' + ssid + ' ? (y/n)'
+
+            connectCmd = 'iwctl station ' + adapter + ' connect ' + SSID
+            os.system(connectCmd)
+
+    def sysClock(self):
+        self.clear()
+        print('-----------------------Updating Sys Clock-----------------------\n')
+        os.system('timedatectl set-ntp true')
+
+    def diskPart(self):
+        self.clear()
+        print('-----------------------Partitioning Disks-----------------------\n')
+        print('The suggested partition structure is:\n- (p1) EFI Partition (512M - type EFI System)\m- (p2) Root partition (2emaining space)\nNOTE: Swap is not needed.\n')
+        self.awaitConf()
+
+        os.system('fdisk -l')
+        disk = input("Enter disk to partition (ex. /dev/sda)")
+
+
+
 
 installer = ArchGen()
